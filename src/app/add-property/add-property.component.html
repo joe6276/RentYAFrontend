@@ -1,0 +1,41 @@
+<div class="flex flex-col p-4 space-x-4 w-full md:flex-row ">
+
+    <div class=" md:w-1/2 ">
+        <img src="https://primestone.com/wp-content/uploads/2020/04/Smart-Buildings-1.jpg" alt="">
+    </div>
+    <form class="flex flex-col space-y-4 md:w-1/2" (ngSubmit)="SubmitForm()" [formGroup]="form" >
+        <h1>Add/ Update  Property</h1>
+        <div class="flex">
+            <label for="name" class="w-1/4  md:w-1/6">Name</label>
+            <input type="text" formControlName="name" class="w-3/4 border border-black w-4/6 p-2 rounded">
+        </div>
+        <div class="flex">
+            <label for="name" class="w-1/4 md:w-1/6">Location</label>
+            <input type="text"   formControlName="location" class="w-3/4 border border-black w-4/6 p-2 rounded">
+        </div>
+
+        <div class="flex">
+            <label for="name" class="w-1/4 md:w-1/6">Images</label>
+            <input type="text"  formControlName="images" class=" w-3/4 border border-black w-4/6 p-2 rounded">
+        </div>
+
+        <div class="flex">
+            <label for="name" class="w-1/4 md:w-1/6">Video</label>
+            <input type="text"  formControlName="video"  class="w-3/4 border border-black w-4/6 p-2 rounded">
+        </div>
+
+        <div class="flex">
+            <label for="name" class="w-1/4 md:w-1/6">Price</label>
+            <input type="text"  formControlName="price" class="w-3/4 border border-black w-4/6 p-2 rounded">
+        </div>
+
+        <div class="flex">
+            <label for="name" class="w-1/4  md:w-1/6">Condition</label>
+            <textarea type="text"  formControlName="condition" class="w-3/4 border border-black w-4/6 p-2 rounded"></textarea>
+        </div>
+
+        <div class="flex justify-center items-center">
+            <button type="submit" class="bg-background text-white px-8 py-2 rounded "> Add Property</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,25 @@
+<div class="flex w-full items-center justify-center mt-10 ">
+    <div class="flex flex-col space-x-4 items-center md:flex-row md:w-3/4">
+        <div class="flex flex-col md:flex-row md:w-1/2">
+            <img src="https://iea.imgix.net/baf1e3a9-a015-4917-8206-021234e74453/matthew-hamilton-Ru3Ap8TNcsk-unsplash.jpg?auto=compress%2Cformat&fit=min&q=80&rect=0%2C0%2C5472%2C3648&w=1800&h=1200&fit=crop&fm=jpg&q=70&auto=format" alt="">
+        </div>
+        <form class="flex flex-col space-y-4 md:w-1/2" (ngSubmit)="SubmitForm()" [formGroup]="form" >
+            <h1>Login User</h1>
+            <div class="flex">
+                <label for="name" class="w-1/4  md:w-1/6">Email</label>
+                <input type="text" formControlName="email" class="w-3/4 border border-black w-4/6 p-2 rounded">
+            </div>
+            <div class="flex">
+                <label for="name" class="w-1/4 md:w-1/6">Password</label>
+                <input type="password"   formControlName="password" class="w-3/4 border border-black w-4/6 p-2 rounded">
+            </div>
+            <div class="flex justify-start items-center">
+                <button type="submit" class="bg-background text-white px-8 py-2 rounded "> Login</button>
+            </div>
+            <p>
+               Not a Member? <a routerLink="/signup" >Sign Up</a> 
+            </p>
+        </form>
+    </div>
+
+</div>

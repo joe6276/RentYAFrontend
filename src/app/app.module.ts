@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { IonicModule } from '@ionic/angular';
     BrowserModule,
     RouterModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     IonicModule.forRoot()
   ],
   providers: [],
