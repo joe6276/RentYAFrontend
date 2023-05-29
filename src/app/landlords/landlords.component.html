@@ -1,0 +1,30 @@
+
+<h1 class="flex  flex-col items-center mt-4" >Approved Landlords</h1>
+<div *ngIf="approvedLandlord|async as landlords">
+
+    <div class="flex flex-col justify-around items-center m-2 p-2 border border-black  md:flex-row " *ngFor="let landlord of landlords">
+        <p class="md:w-1/3">{{landlord.name}}</p>
+        <a class="md:w-1/3">{{landlord.propertyDocs}}</a>
+        <button class="bg-BrightRedLight text-white  px-4 py-2 rounded" (click)="deleteLandlord(landlord.id)">Delete</button>
+    </div>
+    
+    <div *ngIf="!landlords.length">
+        <p><i>No approved Landlords</i></p>
+    </div>
+    </div>
+    <h1 class="flex  flex-col items-center mt-4">UnApproved Landlords</h1>
+
+<div *ngIf="unapprovedLandlord|async as landlords">
+
+    <div class="flex flex-col justify-around items-center m-2 p-2 border border-black  md:flex-row " *ngFor="let landlord of landlords">
+        <p class="md:w-1/3">{{landlord.name}}</p>
+        <a class="md:w-1/3" href={{landlord.propertyDocs}}>{{landlord.propertyDocs}}</a>
+        <button class="bg-BrightRedLight text-white  px-4 py-2 rounded" (click)="onApprove(landlord.id)">Approve</button>
+        <button class="bg-BrightRedLight text-white  px-4 py-2 rounded" (click)="deleteLandlord(landlord.id)">Decline</button>
+    </div>
+    <div *ngIf="!landlords.length">
+        <p><i>No Unapproved Landlords</i></p>
+    </div>
+    </div>
+
+    

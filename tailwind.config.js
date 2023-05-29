@@ -24,7 +24,8 @@ module.exports = {
         TagBlue:"#E1ECF4",
         Green:"#228B22",
         Red:"#DB0000",
-        background:"#540075;"
+        background:"#540075;",
+        Error:"#F8D7DA"
 
       },
      

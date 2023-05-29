@@ -29,9 +29,13 @@ export class AuthService {
 
    isLandlord(){
     let role=localStorage.getItem('role')
-    return role==='landlord'?true :false
+    return  role==='admin' ?true :false
    }
 
+   isAdmin(){
+    let role=localStorage.getItem('role')
+    return role==='landlord' || role==='admin' ?true :false
+   }
    getUsername(){
     let username=localStorage.getItem('username')
     return username
