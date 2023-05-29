@@ -6,10 +6,11 @@
      <a  routerLink="property" class="text-white">Properties</a>
      <!-- <a href="#" class="text-white">About us</a>
      <a href="#" class="text-white"> Contact Us</a> -->
-     <a routerLink="lsignup" class="text-white" *ngIf="authService.isLoggedIn() && authService.isLandlord()"> Become a Landlord</a>
+     <a routerLink="lsignup" class="text-white"> Become a Landlord</a>
      <a href="#" class="text-white"
       routerLink="add/1" *ngIf="authService.isLoggedIn() && authService.isLandlord()"> Add Property</a>
       <a routerLink="/landlords" class="text-white"  *ngIf="authService.isAdmin()">landlords</a>
+      <a routerLink="/myProperties" class="text-white"  *ngIf="authService.isLoggedIn() && authService.isLandlord()">MyProperties</a>
   </div>
  
   <div class="flex flex-col space-y-2 items-center md:flex-center md:flex-row md:space-x-4">

@@ -1,0 +1,18 @@
+
+<div class="w-full h-80">
+    <img src="https://media.timeout.com/images/106001096/750/422/image.jpg" class="w-full h-full" alt="">
+</div>
+<h1 class="flex  flex-col items-center mt-4"> My Properties </h1>
+
+<div *ngIf="properties | async as props" class="w-full mt-2 rounded items-center justify-center  flex flex-col  space-y-2 md:flex-row md:flex-wrap md:space-x-4">
+    <div  *ngFor="let p of props" [routerLink]="['/property', p.id]"   class="p-2 m-4  h-full flex flex-col border border-black p-2 md:w-1/5">
+        <img  class="w-full h-3/4"src={{p.images}} alt="">
+        <p>{{p.name}}</p>
+        <p>{{p.price| currency}}</p>
+        <p><ion-icon name="location-outline"></ion-icon> {{p.location}}</p>
+    </div>
+
+    <div *ngIf="!props.length" class="bg-Error">
+        <p class="text-TextError"><i>No Properties Found!!</i></p>
+    </div>
+</div>

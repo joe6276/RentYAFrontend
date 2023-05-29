@@ -15,6 +15,7 @@ export class AddPropertyComponent implements OnInit {
 form!:FormGroup
 id!:string
 isUpdating=false
+errorMessage=null
   constructor( private fb:FormBuilder, private route:ActivatedRoute, private propertyService:PropertiesService){}
 
   ngOnInit(): void {
@@ -42,6 +43,9 @@ isUpdating=false
             price:res.price,
             condition:res.condition
           })
+          this.errorMessage=null
+         },error=>{
+          this.errorMessage=error.error.message
          })
       }else{
         this.form.reset()

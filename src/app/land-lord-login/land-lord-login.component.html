@@ -1,9 +1,15 @@
+
+
 <div class="flex w-full items-center justify-center mt-10 ">
+    
     <div class="flex flex-col space-x-4 items-center md:flex-row md:w-3/4">
         <div class="flex flex-col md:flex-row md:w-1/2">
             <img src="https://iea.imgix.net/baf1e3a9-a015-4917-8206-021234e74453/matthew-hamilton-Ru3Ap8TNcsk-unsplash.jpg?auto=compress%2Cformat&fit=min&q=80&rect=0%2C0%2C5472%2C3648&w=1800&h=1200&fit=crop&fm=jpg&q=70&auto=format" alt="">
         </div>
         <form class="flex flex-col space-y-4 md:w-1/2" (ngSubmit)="SubmitForm()" [formGroup]="form" >
+            <div *ngIf="errorMessage" class="bg-Error p-2 mt-2 text-center text-TextError">
+                <p>{{errorMessage}}</p>
+            </div>
             <h1>Login Landlord</h1>
             <div class="flex">
                 <label for="name" class="w-1/4  md:w-1/6">Email</label>

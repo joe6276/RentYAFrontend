@@ -1,9 +1,14 @@
 <div class="flex flex-col p-4 space-x-4 w-full md:flex-row ">
-
+<div *ngIf="errorMessage">
+    <p>{{errorMessage}}</p>
+</div>
     <div class=" md:w-1/2 ">
         <img src="https://primestone.com/wp-content/uploads/2020/04/Smart-Buildings-1.jpg" alt="">
     </div>
     <form class="flex flex-col space-y-4 md:w-1/2" (ngSubmit)="SubmitForm()" [formGroup]="form" >
+        <div *ngIf="errorMessage">
+            <p>{{errorMessage}}</p>
+        </div>
         <h1>Add/ Update  Property</h1>
         <div class="flex">
             <label for="name" class="w-1/4  md:w-1/6">Name</label>
@@ -35,7 +40,7 @@
         </div>
 
         <div class="flex justify-center items-center">
-            <button type="submit" class="bg-background text-white px-8 py-2 rounded "> 
+            <button type="submit"[disabled]="!form.valid" class="bg-background text-white px-8 py-2 rounded "> 
                 {{isUpdating ? "Update Property":" Add Property"}}
             </button>
         </div>

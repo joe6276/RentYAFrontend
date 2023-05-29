@@ -25,7 +25,8 @@ module.exports = {
         Green:"#228B22",
         Red:"#DB0000",
         background:"#540075;",
-        Error:"#F8D7DA"
+        Error:"#F8D7DA",
+        TextError:"#731C56"
 
       },
      

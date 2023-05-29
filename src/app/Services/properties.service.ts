@@ -14,6 +14,9 @@ export class PropertiesService {
     return this.http.get<Property[]>('http://localhost:8080/property')
   }
 
+  getmyProperties():Observable<Property[]>{
+    return this.http.get<Property[]>('http://localhost:8080/property/my/property')
+  }
   addProperty(property:AddProperty):Observable<AddPropertySuccess>{
     return  this.http.post<AddPropertySuccess>('http://localhost:8080/property', property)
   }

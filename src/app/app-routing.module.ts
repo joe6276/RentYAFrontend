@@ -15,7 +15,7 @@ const routes: Routes = [
   {path:'lsignup', loadComponent:()=>import('./land-lord-registration/land-lord-registration.component').then(c=>c.LandLordRegistrationComponent)},
   {path:'llogin', loadComponent:()=>import('./land-lord-login/land-lord-login.component').then(c=>c.LandLordLoginComponent)},
   {path:'landlords',canActivate:[IsAdminService], loadComponent:()=>import('./landlords/landlords.component').then(c=>c.LandlordsComponent)},
-
+  {path:'myProperties',canActivate:[IsAdminOrLandlordService], loadComponent:()=>import('./my-properties/my-properties.component').then(c=>c.MyPropertiesComponent)}
 ];
 
 @NgModule({
