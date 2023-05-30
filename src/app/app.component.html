@@ -11,7 +11,8 @@
       routerLink="add/1" *ngIf="authService.isLoggedIn() && authService.isLandlord()"> Add Property</a>
       <a routerLink="/landlords" class="text-white"  *ngIf="authService.isAdmin()">landlords</a>
       <a routerLink="/myProperties" class="text-white"  *ngIf="authService.isLoggedIn() && authService.isLandlord()">MyProperties</a>
-  </div>
+      <a routerLink="/counter">Counter{{count}}</a>
+   </div>
  
   <div class="flex flex-col space-y-2 items-center md:flex-center md:flex-row md:space-x-4">
      <a routerLink="signup" class="bg-white text-black px-4  rounded " *ngIf="!authService.isLoggedIn()">Sign Up</a>

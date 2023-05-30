@@ -1,0 +1,13 @@
+<div class="p-6">
+<p>Show Paragraph</p>    
+<input [checked]="show"  (change)="toggleShow()" type="checkbox"/>
+<p *ngIf="show">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum dolor quam quisquam? Deleniti ipsam a nesciunt laborum fugit necessitatibus molestiae consequuntur eligendi dignissimos aut unde, hic, ullam ad quaerat. Iure?</p>
+<br>
+<button class="bg-background text-white p-2 rounded" (click)="increment()"> Increment </button>
+<p>{{count}}</p>
+
+<button class="bg-background text-white p-2 rounded" (click)="decrement()"> Decrement </button>
+
+
+</div>
+

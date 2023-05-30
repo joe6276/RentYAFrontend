@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
@@ -7,6 +7,10 @@ import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InteceptorService } from './Services/inteceptor.service';
+import { StoreModule } from '@ngrx/store';
+import { paragraphReducer } from './State/Reducers/paragraphReducer';
+import { counterReducer } from './State/Reducers/counterReducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,9 @@ import { InteceptorService } from './Services/inteceptor.service';
     AppRoutingModule,
     ReactiveFormsModule,
     IonicModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({paragraph:paragraphReducer, counter:counterReducer}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [{provide:HTTP_INTERCEPTORS, useClass:InteceptorService,multi:true}],
   bootstrap: [AppComponent]

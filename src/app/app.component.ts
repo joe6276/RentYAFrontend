@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './Services/auth.service';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +8,14 @@ import { AuthService } from './Services/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
-  constructor(public authService:AuthService){}
+  count!:number
+  constructor( public authService:AuthService,private store:Store<any>){}
+  ngOnInit(): void {
+    this.store.select('counter').subscribe(values=>{
+      this.count= values.count
+    })
+  }
+ 
   title = 'RentYAfrontend';
  
 }

@@ -16,6 +16,7 @@ const routes: Routes = [
   {path:'llogin', loadComponent:()=>import('./land-lord-login/land-lord-login.component').then(c=>c.LandLordLoginComponent)},
   {path:'landlords',canActivate:[IsAdminService], loadComponent:()=>import('./landlords/landlords.component').then(c=>c.LandlordsComponent)},
   {path:'myProperties',canActivate:[IsAdminOrLandlordService], loadComponent:()=>import('./my-properties/my-properties.component').then(c=>c.MyPropertiesComponent)}
+ , {path:'counter', loadComponent:()=>import('./counter/counter.component').then(c=>c.CounterComponent)}
 ];
 
 @NgModule({
