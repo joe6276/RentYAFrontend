@@ -7,7 +7,7 @@ import { ActivatedRoute, Params, Router, RouterModule } from '@angular/router';
 import { AuthService } from '../Services/auth.service';
 import { AppState } from '../State/appState';
 import { Store } from '@ngrx/store';
-import { GetProperty, GetSingleProperty } from '../State/Actions/propertyActions';
+import { GetProperty, GetSingleProperty, deleteProperty } from '../State/Actions/propertyActions';
 import { getProperty } from '../State/Reducers/propertyReducer';
 
 @Component({
@@ -19,7 +19,7 @@ import { getProperty } from '../State/Reducers/propertyReducer';
 })
 export class SinglePropertyComponent implements OnInit {
   property!:Observable<Property>
-  constructor(private propertyService:PropertiesService, private store:Store<AppState>,  public authService:AuthService ,private route:ActivatedRoute, private router:Router){}
+  constructor( private store:Store<AppState>,  public authService:AuthService ,private route:ActivatedRoute, private router:Router){}
   ngOnInit(): void {
     this.route.params.subscribe((p:Params)=>{
       this.store.dispatch(GetProperty())
@@ -29,9 +29,11 @@ export class SinglePropertyComponent implements OnInit {
   }
 
   ondelete(id:string){
-    this.propertyService.deleteProperty(id).subscribe(res=>{
-      console.log(res);
-      this.router.navigate(['/property'])
-    })
+    this.store.dispatch(deleteProperty({id}))
+    this.router.navigate(['/property'])
+    // this.propertyService.deleteProperty(id).subscribe(res=>{
+    //   console.log(res);
+    //   this.router.navigate(['/property'])
+    // })
   }
 }

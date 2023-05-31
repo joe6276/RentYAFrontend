@@ -14,6 +14,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { propertyReducer } from './State/Reducers/propertyReducer';
 import { PropertyEffects } from './State/Effects/PropertyEffects';
+import { userReducers } from './State/Reducers/userReducer';
+import { UserEffects } from './State/Effects/UserEffects';
 
 @NgModule({
   declarations: [
@@ -26,9 +28,9 @@ import { PropertyEffects } from './State/Effects/PropertyEffects';
     ReactiveFormsModule,
     IonicModule.forRoot(),
     HttpClientModule,
-    StoreModule.forRoot({paragraph:paragraphReducer, counter:counterReducer, property:propertyReducer}),
+    StoreModule.forRoot({paragraph:paragraphReducer, counter:counterReducer, property:propertyReducer,user:userReducers}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
-    EffectsModule.forRoot([PropertyEffects])
+    EffectsModule.forRoot([PropertyEffects,UserEffects])
   ],
   providers: [{provide:HTTP_INTERCEPTORS, useClass:InteceptorService,multi:true}],
   bootstrap: [AppComponent]

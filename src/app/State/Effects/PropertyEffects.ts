@@ -51,4 +51,28 @@ export class  PropertyEffects{
         })
     )
   })
+
+  deleteProperty$= createEffect(()=>{
+    return this.action$.pipe(
+        ofType(PropertyActions.deleteProperty),
+        mergeMap(action=>{
+            return this.propertySevice.deleteProperty(action.id).pipe(
+                map(ms=>PropertyActions.deletePropertySuccess({message:ms.message})),
+                catchError(error=>of(PropertyActions.deletePropertyFailure({message:error})))
+            )
+        })
+    )
+  })
+
+  myProperties$= createEffect(()=>{
+    return this.action$.pipe(
+        ofType(PropertyActions.GetMyProperty),
+        mergeMap(action=>{
+            return this.propertySevice.getmyProperties().pipe(
+                map(Properties=>PropertyActions.GetMyPropertySuccess({Properties})),
+                catchError(error=>of(PropertyActions.GetMyPropertyFailure({errorMessage:error})))
+            )
+        })
+    )
+  })
 }

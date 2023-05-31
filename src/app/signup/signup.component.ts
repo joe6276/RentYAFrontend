@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { UserService } from '../Services/user.service';
+import { AppState } from '../State/appState';
+import { Store } from '@ngrx/store';
+import { userRegistration } from '../State/Actions/userActions';
 
 @Component({
   selector: 'app-signup',
@@ -14,7 +17,7 @@ import { UserService } from '../Services/user.service';
 export class SignupComponent  implements OnInit{
   form!:FormGroup
   errorMessage=null
-  constructor( private fb:FormBuilder, private userService:UserService){}
+  constructor( private fb:FormBuilder, private userService:UserService, private store:Store<AppState>){}
 
 
 ngOnInit(): void {
@@ -27,13 +30,10 @@ ngOnInit(): void {
 }
 
 SubmitForm(){
-  this.userService.addUser(this.form.value).subscribe(
-    res=>{
-     console.log( res.message);
-    },
-    err=>{
-      this.errorMessage= err.message
-    }
-  )
+  this.userService.addUser(this.form.value).subscribe(res=>{
+    console.log(res);
+    
+  })
+  // this.store.dispatch(userRegistration({newUser:this.form.value}))
 }
 }

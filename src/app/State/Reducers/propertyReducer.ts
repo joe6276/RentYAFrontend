@@ -9,7 +9,11 @@ export interface PropertyInterface{
     addPropertyFailure:string
     updatePropertySuccess:string
     updatePropertyFailure:string
+    deletePropertySuccess:string
+    deletePropertyFailure:string
     propertyId:string
+    myProperties:Property[]
+    myPropertyError:string
 }
 
 
@@ -20,7 +24,11 @@ const initialState:PropertyInterface={
     addPropertySuccess:'',
     updatePropertyFailure:'',
     updatePropertySuccess:'',
-    propertyId:''
+    propertyId:'',
+    deletePropertyFailure:'',
+    deletePropertySuccess:'',
+    myProperties:[],
+    myPropertyError:''
 }
 
 
@@ -29,6 +37,7 @@ const getPropertyState= createFeatureSelector<PropertyInterface>('property')
 export const getProperties= createSelector(getPropertyState,(state)=>state.properties)
 export const getPropError= createSelector(getPropertyState,(state)=>state.getPropertyError)
 export const getPropertyId= createSelector(getPropertyState,(state)=>state.propertyId)
+export const getMyProperties= createSelector(getPropertyState,(state)=>state.myProperties)
 export const getProperty= createSelector(getProperties,getPropertyId,(properties,id)=>properties.find(p=>p.id===id) as Property)
 
 
@@ -85,6 +94,38 @@ on(PropertyActions.UpdatePropertyFailure, (state,action):PropertyInterface=>{
         ...state,
         updatePropertyFailure:action.message,
         updatePropertySuccess:' '
+    }
+})
+,on(PropertyActions.deletePropertySuccess, (state,action):PropertyInterface=>{
+    return{
+        ...state,
+      deletePropertyFailure:'',
+      deletePropertySuccess:action.message
+    }
+}),
+
+on(PropertyActions.deletePropertyFailure, (state,action):PropertyInterface=>{
+    return{
+        ...state,
+        deletePropertyFailure:action.message,
+        deletePropertySuccess:' '
+    }
+})
+
+
+,on(PropertyActions.GetMyPropertySuccess, (state,action):PropertyInterface=>{
+    return{
+        ...state,
+     myProperties:action.Properties,
+     myPropertyError:''
+    }
+}),
+
+on(PropertyActions.GetMyPropertyFailure, (state,action):PropertyInterface=>{
+    return{
+        ...state,
+        myProperties:[],
+        myPropertyError:action.errorMessage
     }
 })
     
