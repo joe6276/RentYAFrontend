@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
-
+import * as CounterActions from '../State/Actions/counterActions'
+import { AppState } from '../State/appState';
+import { getCounter } from '../State/Reducers/counterReducer';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-counter',
   standalone: true,
@@ -11,31 +14,27 @@ import { Store } from '@ngrx/store';
 })
 export class CounterComponent implements OnInit{
   show!:boolean
-  constructor(private store:Store<any>){}
-  count=0
+  constructor(private store:Store<AppState>){}
+  count!:any
   ngOnInit(): void {
     this.store.select('paragraph').subscribe(values=>{
       this.show= values.showParagraph
     })
-    this.store.select('counter').subscribe(values=>{
-      this.count= values.count
-    })
+    // this.store.select('counter').subscribe(values=>{
+    //   this.count= values.count
+    // })
+
+    this.count=this.store.select(getCounter)
   }
   toggleShow(){
     // this.show= !this.show
-    this.store.dispatch({
-      type:'SHOWP'
-    })
+    // this.store.dispatch(CounterActions.)
   }
   decrement(){
-    this.store.dispatch({
-      type:'Decrement'
-    })
+  this.store.dispatch(CounterActions.Decrement({decrementBy:2}))
   }
 
   increment(){
-    this.store.dispatch({
-      type:'Increment'
-    })
+    this.store.dispatch(CounterActions.Increment({incrementBy:4}))
   }
 }

@@ -5,6 +5,10 @@ import { Property } from '../Interfaces';
 import { PropertiesService } from '../Services/properties.service';
 import { ActivatedRoute, Params, Router, RouterModule } from '@angular/router';
 import { AuthService } from '../Services/auth.service';
+import { AppState } from '../State/appState';
+import { Store } from '@ngrx/store';
+import { GetProperty, GetSingleProperty } from '../State/Actions/propertyActions';
+import { getProperty } from '../State/Reducers/propertyReducer';
 
 @Component({
   selector: 'app-single-property',
@@ -15,10 +19,12 @@ import { AuthService } from '../Services/auth.service';
 })
 export class SinglePropertyComponent implements OnInit {
   property!:Observable<Property>
-  constructor(private propertyService:PropertiesService,  public authService:AuthService ,private route:ActivatedRoute, private router:Router){}
+  constructor(private propertyService:PropertiesService, private store:Store<AppState>,  public authService:AuthService ,private route:ActivatedRoute, private router:Router){}
   ngOnInit(): void {
     this.route.params.subscribe((p:Params)=>{
-      this.property= this.propertyService.getOneProperty(p['id'])
+      this.store.dispatch(GetProperty())
+      this.store.dispatch(GetSingleProperty({id:p['id']}))
+      this.property=this.store.select(getProperty)
     })
   }
 

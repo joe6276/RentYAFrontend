@@ -1,18 +1,31 @@
-import { createAction, createReducer, on } from "@ngrx/store";
+import { createFeatureSelector, createReducer, createSelector, on } from "@ngrx/store";
+// import { Decrement, Increment } from "../Actions/counterActions";
+import * as CounterActions from '../Actions/counterActions'
 
+
+export interface CounterInterface{
+    count:number
+}
+
+const initialState:CounterInterface={
+    count:10
+}
+
+const getCounterState= createFeatureSelector<CounterInterface>('counter')
+export const getCounter= createSelector(getCounterState, (state)=>state.count)
 
 export const counterReducer= createReducer(
-    {count:10},
-    on(createAction('Increment'), state=>{
+        initialState,
+    on(CounterActions.Increment, (state, action):CounterInterface=>{
         return {
             ...state,
-            count: state.count +1
+            count: state.count + action.incrementBy,
         }
     }),
-    on(createAction('Decrement'), state=>{
+    on(CounterActions.Decrement, (state,action)=>{
         return {
             ...state,
-            count: state.count - 1
+            count: state.count - action.decrementBy
         }
     })
     )

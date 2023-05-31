@@ -1,9 +1,15 @@
 import { createAction, createReducer, on } from "@ngrx/store";
 
+export interface ParagraphInterface{
+    showParagraph:boolean
+}
 
+const initialState:ParagraphInterface={
+    showParagraph:false
+}
 export const  paragraphReducer=createReducer(
-    {showParagraph:false},
-    on(createAction('SHOWP'), state=>{
+    initialState,
+    on(createAction('SHOWP'), (state):ParagraphInterface=>{
         // console.log('Action Changed');
         
         return{

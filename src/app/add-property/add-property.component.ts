@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PropertiesService } from '../Services/properties.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { AppState } from '../State/appState';
+import { Store } from '@ngrx/store';
+import { Addproperty, UpdateProperty } from '../State/Actions/propertyActions';
 
 @Component({
   selector: 'app-add-property',
@@ -16,7 +19,9 @@ form!:FormGroup
 id!:string
 isUpdating=false
 errorMessage=null
-  constructor( private fb:FormBuilder, private route:ActivatedRoute, private propertyService:PropertiesService){}
+  constructor( private fb:FormBuilder, private store:Store<AppState>,
+    private router:Router,
+     private route:ActivatedRoute, private propertyService:PropertiesService){}
 
   ngOnInit(): void {
     this.form= this.fb.group({
@@ -60,20 +65,22 @@ errorMessage=null
     console.log(typeof this.id, this.id);
     
   if(this.id==='1'){
-    this.propertyService.addProperty(this.form.value).subscribe(
-      res=>{
-        console.log(res);
+    // this.propertyService.addProperty(this.form.value).subscribe(
+    //   res=>{
+    //     console.log(res);
         
-      }
-    )
-    
+    //   }
+    // )
+    this.store.dispatch(Addproperty({newProperty:this.form.value}))
+    // this.router.navigate(['/property'])
   }else{
-    this.propertyService.updateProperty(this.id ,this.form.value).subscribe(
-      res=>{
-        console.log(res);
+    // this.propertyService.updateProperty(this.id ,this.form.value).subscribe(
+    //   res=>{
+    //     console.log(res);
         
-      }
-    )
+    //   }
+    // )
+    this.store.dispatch(UpdateProperty({id:this.id,updatedProperty:this.form.value}))
 }
   }
 }

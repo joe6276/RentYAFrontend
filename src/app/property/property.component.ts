@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { PropertiesService } from '../Services/properties.service';
 import { Property } from '../Interfaces';
 import { Observable } from 'rxjs';
 import { RouterModule } from '@angular/router';
+import { AppState } from '../State/appState';
+import { Store } from '@ngrx/store';
+import { GetProperty } from '../State/Actions/propertyActions';
+import { getProperties } from '../State/Reducers/propertyReducer';
 
 @Component({
   selector: 'app-property',
@@ -15,10 +18,10 @@ import { RouterModule } from '@angular/router';
 })
 export class PropertyComponent implements OnInit {
    properties!:Observable<Property[]>
-   constructor(private propertyService:PropertiesService){}
- 
+   constructor(private store:Store<AppState>){}
 
    ngOnInit(): void {
-      this.properties= this.propertyService.getProperties()
+      this.properties= this.store.select(getProperties)
+      this.store.dispatch(GetProperty())
    }
 }
