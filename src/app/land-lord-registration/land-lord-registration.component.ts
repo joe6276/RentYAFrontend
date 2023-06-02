@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { LandordService } from '../Services/landord.service';
+import { AppState } from '../State/appState';
+import { Store } from '@ngrx/store';
+import { CreateALandLord } from '../State/Actions/landLordActions';
 
 @Component({
   selector: 'app-land-lord-registration',
@@ -14,7 +17,7 @@ import { LandordService } from '../Services/landord.service';
 export class LandLordRegistrationComponent implements OnInit {
   form!:FormGroup
 
-  constructor( private fb:FormBuilder, private landlordService:LandordService){}
+  constructor( private fb:FormBuilder,private store:Store<AppState>){}
  
 
 ngOnInit(): void {
@@ -28,6 +31,7 @@ ngOnInit(): void {
 }
 
 SubmitForm(){
-this.landlordService.addLandlord(this.form.value).subscribe()
+// this.landlordService.addLandlord(this.form.value).subscribe()
+this.store.dispatch(CreateALandLord({newLandLord:this.form.value}))
 }
 }

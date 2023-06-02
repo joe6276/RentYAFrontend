@@ -11,7 +11,7 @@ export class InteceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let token = localStorage.getItem('token') as string
    if(req.url !== 'http://localhost:8080/users/login' && 
-   req.url!=='http://localhost:8080/landlords/login' && req.url!=='http://localhost:4200/property'){
+   req.url!=='http://localhost:8080/landlords/login' && req.url!=='http://localhost:8080/users' && req.url!=='http://localhost:8080/landlords'){
     let modifiedrequest =req.clone({headers: new HttpHeaders().append('token', token)})
     return next.handle(modifiedrequest)
    }

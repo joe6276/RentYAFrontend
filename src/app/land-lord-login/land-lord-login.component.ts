@@ -4,6 +4,9 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterModule } from '@angular/router';
 import { LandordService } from '../Services/landord.service';
 import { AuthService } from '../Services/auth.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '../State/appState';
+import { LoginLandLord } from '../State/Actions/landLordActions';
 
 @Component({
   selector: 'app-land-lord-login',
@@ -15,8 +18,7 @@ import { AuthService } from '../Services/auth.service';
 export class LandLordLoginComponent implements OnInit {
   form!:FormGroup
   errorMessage=null
-  constructor( private fb:FormBuilder, private landlordService:LandordService, 
-    private authService:AuthService, private router:Router){}
+  constructor( private fb:FormBuilder, private store:Store<AppState>, private router:Router){}
 
 
 ngOnInit(): void {
@@ -27,15 +29,17 @@ ngOnInit(): void {
   })
 }
 SubmitForm(){
-// console.log(this.form.value);
-this.landlordService.logLandlord(this.form.value).subscribe(res=>{
- this.authService.login({...res, username:'Landlord'})  
- this.router.navigate(['/property'])
- this.errorMessage=null
-},
-err=>{
-this.errorMessage=err.error.message
-})
+// // console.log(this.form.value);
+// this.landlordService.logLandlord(this.form.value).subscribe(res=>{
+//  this.authService.login({...res, username:'Landlord'})  
+//  this.router.navigate(['/property'])
+//  this.errorMessage=null
+// },
+// err=>{
+// this.errorMessage=err.error.message
+// })
+this.store.dispatch(LoginLandLord({landlord:this.form.value}))
+this.router.navigate(['/property'])
 }
  
 }

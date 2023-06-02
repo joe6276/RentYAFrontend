@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LogUserSuccess } from '../Interfaces';
+import { LogLandlordSuccess, LogUserSuccess } from '../Interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,12 @@ export class AuthService {
 
    }
     login(res:LogUserSuccess){
+      localStorage.setItem('token',res.token)
+      localStorage.setItem('role', res.role)
+      localStorage.setItem('username', res.username)
+    }
+
+    loginLandLord(res:LogLandlordSuccess){
       localStorage.setItem('token',res.token)
       localStorage.setItem('role', res.role)
       localStorage.setItem('username', res.username)

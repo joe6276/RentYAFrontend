@@ -76,6 +76,7 @@
     export interface LogUserSuccess{
         token:string
         role:string
+        message:string
         username:string
     }
 
@@ -83,6 +84,7 @@
         token:string
         role:string
         message:string
+        username:string
     }
 
     export interface AdminSuccess{
