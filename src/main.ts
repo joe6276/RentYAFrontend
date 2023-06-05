@@ -27,10 +27,11 @@ bootstrapApplication(AppComponent, {
     providers: [
         importProvidersFrom(BrowserModule,
              RouterModule, AppRoutingModule, ReactiveFormsModule, 
-             IonicModule.forRoot(), StoreModule.forRoot({ paragraph: paragraphReducer, counter: counterReducer, property: propertyReducer, user: userReducers ,landlord:landLordReducer}),
+             IonicModule.forRoot(), StoreModule.forRoot({ paragraph: paragraphReducer, 
+                counter: counterReducer, property: propertyReducer, user: userReducers ,landlord:landLordReducer}),
              StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
              EffectsModule.forRoot([PropertyEffects, UserEffects,LandLordEffects])),
-        { provide: HTTP_INTERCEPTORS, useClass: InteceptorService, multi: true },
+        // { provide: HTTP_INTERCEPTORS, useClass: InteceptorService, multi: true },
         provideHttpClient(withInterceptorsFromDi())
     ]
 })

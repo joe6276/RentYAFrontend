@@ -37,4 +37,28 @@ constructor(private actions:Actions, private landLordService:LandordService, pri
             })
         )
         })
+
+        getApproved$= createEffect(()=>{
+            return this.actions.pipe(
+                ofType(LandLordActions.approvedLandLord),
+                mergeMap(()=>{
+                    return this.landLordService.getapprovedLandlords().pipe(
+                        map(res=> LandLordActions.approvedLandLordSuccess({res})),
+                        catchError(error=>of(LandLordActions.approvedLandLordFailure({message:error})))
+                    )
+                })
+            )
+        })
+
+        getUnApproved$= createEffect(()=>{
+            return this.actions.pipe(
+                ofType(LandLordActions.approvedLandLord),
+                mergeMap(()=>{
+                    return this.landLordService.getapprovedLandlords().pipe(
+                        map(res=> LandLordActions.approvedLandLordSuccess({res})),
+                        catchError(error=>of(LandLordActions.approvedLandLordFailure({message:error})))
+                    )
+                })
+            )
+        })
 }

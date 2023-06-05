@@ -44,6 +44,7 @@ SubmitForm(){
 // )
 
 this.store.dispatch(userLogin({user:this.form.value}))
+this.router.navigate(['/property'])
 }
  
 }

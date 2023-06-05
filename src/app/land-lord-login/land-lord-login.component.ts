@@ -39,7 +39,7 @@ SubmitForm(){
 // this.errorMessage=err.error.message
 // })
 this.store.dispatch(LoginLandLord({landlord:this.form.value}))
-this.router.navigate(['/property'])
+
 }
  
 }

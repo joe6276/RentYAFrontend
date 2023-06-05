@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { LoginUser, NewUser } from "src/app/Interfaces";
+import { LogUserSuccess, LoginUser, NewUser } from "src/app/Interfaces";
 
 
 
