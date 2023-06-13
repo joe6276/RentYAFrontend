@@ -26,6 +26,9 @@ export class SinglePropertyComponent implements OnInit {
       this.store.dispatch(GetSingleProperty({id:p['id']}))
       this.property=this.store.select(getProperty)
     })
+
+    console.log(this.router);
+    
   }
 
   ondelete(id:string){

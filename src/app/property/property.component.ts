@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { Property } from '../Interfaces';
 import { Observable } from 'rxjs';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AppState } from '../State/appState';
 import { Store } from '@ngrx/store';
 import { GetProperty } from '../State/Actions/propertyActions';
@@ -18,10 +18,12 @@ import { getProperties } from '../State/Reducers/propertyReducer';
 })
 export class PropertyComponent implements OnInit {
    properties!:Observable<Property[]>
-   constructor(private store:Store<AppState>){}
+   constructor(private store:Store<AppState> , private router:Router){}
 
    ngOnInit(): void {
       this.properties= this.store.select(getProperties)
       this.store.dispatch(GetProperty())
+     console.log( this.router);
+     
    }
 }
